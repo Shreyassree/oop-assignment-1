@@ -1,0 +1,103 @@
+#include<iostream>
+#include <cstring>
+using namespace std;
+
+
+struct library {
+    char book_name[100];
+    char author[100];
+    int pages;
+    float price;
+};
+
+int main()
+{
+    struct library lib[100];
+    char sb[100], am[100], s[100];
+    int i, q, counter, j;
+
+    i = j = q = counter = 0;
+
+    while (q != 6) {
+        cout<<("\n1. Add book");
+        cout<<("\n2. Display List");
+        cout<<("\n3. Search book");
+        cout<<("\n4. Search book by Author name");
+        cout<<("\n5. Sort list of books by name");
+        cout<<("\n6. Exit");
+
+        cout<<("\nEnter your choice: ");
+        cin>>q;
+
+        switch(q){
+        case 1:
+
+			cout<<("Book name = ");
+            cin>>lib[i].book_name;
+
+            cout<<("Author name = ");
+            cin>>lib[i].author;
+
+            cout<<("no. of pages = ");
+            cin>>lib[i].pages;
+
+            cout<<("price= ");
+            cin>>lib[i].price;
+            counter++;
+            i++;
+			break;
+
+        case 2:
+            cout<<("\nSorted list of books: ");
+            for (i=0; i < counter; i++){
+                cout<<"\nBook Name = "<<lib[i].book_name;
+
+                cout<<"\nAuthor Name ="<< lib[i].author;
+
+                cout<<"\nNumber of pages = "<< lib[i].pages;
+
+                cout<<"\nPrice = Rs."<<lib[i].price;
+            }
+            break;
+
+        case 3:
+            cout<<("Input to search book: ");
+            cin>>sb;
+            for (i = 0; i < counter; i++){
+                if (strcmp(sb, lib[i].book_name) == 0)
+                    cout<<"The book " <<lib[i].book_name<< " written by " <<lib[i].author<< " has " <<lib[i].pages<< " pages with a price of Rs."<<lib[i].price ;
+            }
+            break;
+
+        case 4:
+            cout<<("\nInput book to search by name of author: ");
+            cin>>am;
+            for(i = 0; i < counter; i++){
+            	if(strcmp(am, lib[i].author) == 0)
+            		cout<<"Book "<<lib[i].book_name<<" is written by "<<lib[i].author;
+			}
+            break;
+
+        case 5:
+        	for(i = 0; i < counter; i++){
+				for(j = i+1; j < counter; j++){
+					if(strcmp(lib[i].book_name, lib[j].book_name) > 0){
+            			strcpy(s, lib[i].book_name);
+            			strcpy(lib[i].book_name, lib[j].book_name);
+            			strcpy(lib[j].book_name, s);
+        			}
+      			}
+   			}
+   			cout<<"\nThe sorted order of names are:\n";
+   			for(i = 0; i < counter; i++)
+                {
+      			cout<<"\n"<<lib[i].book_name;
+   			}
+
+        case 6:
+        	return 0;
+        }
+q++;
+    }
+
+}
